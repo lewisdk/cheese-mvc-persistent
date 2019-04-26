@@ -1,5 +1,6 @@
 package org.launchcode.controllers;
 
+import org.launchcode.models.Category;
 import org.launchcode.models.Cheese;
 import org.launchcode.models.data.CategoryDao;
 import org.launchcode.models.data.CheeseDao;
@@ -41,15 +42,16 @@ public class CheeseController {
     public String displayAddCheeseForm(Model model) {
         model.addAttribute("title", "Add Cheese");
         model.addAttribute(new Cheese());
-        model.addAttribute("categories", CategoryDao.findAll());
+        model.addAttribute("categories", categoryDao.findAll());
         return "cheese/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese,
-                                       Errors errors, Model model) {
+                                       Errors errors, Model model, @RequestParam int categoryId) {
 
         Category cat = categoryDao.findOne(categoryId);
+        newCheese.setCategory(cat);
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
