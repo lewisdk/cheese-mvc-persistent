@@ -24,10 +24,13 @@ public class Category {
 
     public Category(String name, List<Cheese> cheeses){
         this.name = name;
+        this.cheeses = cheeses;
     }
 
     @OneToMany
     @JoinColumn(name = "category_id")
     private List<Cheese> cheeses = new ArrayList<>();
-    
+
+
+
 }
