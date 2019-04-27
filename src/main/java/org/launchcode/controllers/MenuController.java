@@ -58,10 +58,13 @@ public class MenuController {
     @RequestMapping(value = "view/{id}", method = RequestMethod.GET)
     public String viewMenu(Model model, @PathVariable int id){
 
+        AddMenuItemForm addMenuItemForm = new AddMenuItemForm();
         Menu menu = menuDao.findOne(id);
+        Iterable<Cheese> cheeses = addMenuItemForm.getCheeses();
 
         model.addAttribute("title", menu.getName());
         model.addAttribute("menu", menu);
+        model.addAttribute("cheeses", cheeses);
 
         return"menu/view";
     }
@@ -70,6 +73,7 @@ public class MenuController {
 
         Menu menu = menuDao.findOne(id);
         AddMenuItemForm newMenuItemForm = new AddMenuItemForm(cheeseDao.findAll(), menu);
+        Iterable<Cheese> cheeses = cheeseDao.findAll();
         model.addAttribute("form", newMenuItemForm);
         model.addAttribute("title", "Add item to menu:" + menu.getName());
 
