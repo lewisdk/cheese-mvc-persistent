@@ -19,17 +19,16 @@ public class Category {
     private String name;
 
 
-    public Category() {
-    }
-
-    public Category(String name, List<Cheese> cheeses){
-        this.name = name;
-        this.cheeses = cheeses;
-    }
-
     @OneToMany
     @JoinColumn(name = "category_id")
     private List<Cheese> cheeses = new ArrayList<>();
+
+    public Category() {
+    }
+
+    public Category(String name){
+        this.name = name;
+    }
 
 
     public String getName() {
@@ -48,5 +47,9 @@ public class Category {
     }
     public int getId(){
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
