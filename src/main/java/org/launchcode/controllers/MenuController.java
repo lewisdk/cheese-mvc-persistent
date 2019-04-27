@@ -69,7 +69,7 @@ public class MenuController {
         return"menu/view";
     }
     @RequestMapping(value="add-item/{id}", method=RequestMethod.GET)
-    public String addItem(Model model, @PathVariable("menuId") int id) {
+    public String addItem(Model model, @PathVariable int id) {
 
         Menu menu = menuDao.findOne(id);
         AddMenuItemForm newMenuItemForm = new AddMenuItemForm(cheeseDao.findAll(), menu);
@@ -80,8 +80,8 @@ public class MenuController {
         return "menu/add-item";
     }
 
-    @RequestMapping(value="add-item/{menuId}",method = RequestMethod.POST)
-    public String addItem(Model model, Errors errors, @ModelAttribute @Valid AddMenuItemForm addMenuItemForm, @PathVariable("menuId") int id){
+    @RequestMapping(value="add-item/{id}",method = RequestMethod.POST)
+    public String processAddItem(Model model, Errors errors, @ModelAttribute @Valid AddMenuItemForm addMenuItemForm, @PathVariable int id){
 
         if (errors.hasErrors()){
             model.addAttribute(addMenuItemForm);
