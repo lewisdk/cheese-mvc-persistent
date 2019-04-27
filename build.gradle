@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 jar {
-	baseName = 'cheese-mvc-data'
+	baseName = 'cheese-mvc'
 	version = '0.0.1-SNAPSHOT'
 }
 
@@ -37,4 +37,5 @@ dependencies {
 
 bootRun {
 	addResources = true
+
 }
