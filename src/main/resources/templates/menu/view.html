@@ -7,14 +7,12 @@
 
         <h1 th:text="${title}">Default Title</h1>
 
-        <p th:unless="${menu.cheeses} and ${menu.cheeses.size()}">no cheese :(</p>
+        <!--<p th:unless="${menu.cheeses} and ${menu.cheeses.size()}">No Menus</p>-->
 
         <nav th:replace="fragments :: navigation"></nav>
 
         <table class="table">
-            <tr>
-                <th>Name</th>
-            </tr>
+
             <tr th:each="cheese : ${menu.cheeses}">
                 <td th:text="${cheese.name}"></td>
             </tr>

@@ -10,15 +10,17 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
+<table class="table">
+
+    <tr>
+        <th>Name</th>
+    </tr>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.name}"></td>
+    </tr>
+</table>
 
 <a href="category/add">Add Category</a>
-
-<ul th:each="category : ${categoryDao}">
-
-    <li th:text="${category.name}"></li>
-
-</ul>
-
 
 </body>
 </html>

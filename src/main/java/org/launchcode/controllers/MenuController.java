@@ -29,7 +29,7 @@ public class MenuController {
     @Autowired
     private CheeseDao cheeseDao;
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("title", "Menus");
         model.addAttribute("menuDao", menuDao.findAll());
@@ -65,13 +65,14 @@ public class MenuController {
 
         model.addAttribute("title", menu.getName());
         model.addAttribute("menu", menu);
-//        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("menuId", menu.getId());
+        //        model.addAttribute("cheeses", cheeses);
 
         return"menu/view";
     }
-    @RequestMapping(value="add-item/{id}", method=RequestMethod.GET)
-    public String addItem(Model model, @PathVariable int id) {
-        Menu menu = menuDao.findOne(id);
+    @RequestMapping(value="add-item/{menuId}", method=RequestMethod.GET)
+    public String addItem(Model model, @PathVariable int menuId) {
+        Menu menu = menuDao.findOne(menuId);
         AddMenuItemForm form = new AddMenuItemForm(menu, cheeseDao.findAll());
 
         model.addAttribute("form", form);
@@ -81,12 +82,12 @@ public class MenuController {
         return "menu/add-item";
     }
 
-    @RequestMapping(value="add-item/{id}",method = RequestMethod.POST)
-    public String postAddItem(Model model, Errors errors, @ModelAttribute @Valid AddMenuItemForm form){
+    @RequestMapping(value="add-item",method = RequestMethod.POST)
+    public String postAddItem(Model model, @ModelAttribute @Valid AddMenuItemForm form, Errors errors){
 
         if (errors.hasErrors()){
             model.addAttribute("form", form);
-            model.addAttribute("title", "Add item to menu: "+menuDao.findOne(form.getMenuId()).getName());
+            model.addAttribute("title", "Add item to menu: "+menuDao.findOne(form.getMenuId()));
             return "menu/add-item";
         }
         Cheese cheeses = cheeseDao.findOne(form.getCheeseId());

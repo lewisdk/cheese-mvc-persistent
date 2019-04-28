@@ -8,19 +8,14 @@
 
         <nav th:replace="fragments :: navigation"></nav>
 
-        <table class="table">
+        <div class="list">
+
+        <ul th:each="menu : ${menuDao}">
+            <li><a th:href="@{'menu/view/'+${menu.id}}" th:text="${menu.name}"/></li>
+        </ul>
 
 
-
-            <tr>
-                <th>Name</th>
-            </tr>
-        <tr th:each="menu : ${menus}">
-
-            <td><a th:href="'menu/view/'+${menu.id}" th:text="${menu.name}"> </a> </td>
-
-        </tr>
-        </table>
+        </div>
 
         <a href="menu/add">Add Menu</a>
 
