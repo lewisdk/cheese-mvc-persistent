@@ -11,9 +11,14 @@
 
         <nav th:replace="fragments :: navigation"></nav>
 
-        <ul >
-            <li th:each="cheese : ${menu.cheeses}" th:text="${cheese.name}"></li>
-        </ul>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+            </tr>
+            <tr th:each="cheese : ${menu.cheeses}">
+                <td th:text="${cheese.name}"></td>
+            </tr>
+        </table>
 
         <p><a th:href="'/menu/add-item/' + ${menu.id}">Add Cheese</a></p>
 

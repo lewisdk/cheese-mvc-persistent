@@ -22,7 +22,7 @@ public class CategoryController {
     @RequestMapping(value = "")
     public String index(Model model){
         model.addAttribute("title", "Categories");
-        model.addAttribute("categoryDao",categoryDao.findAll());
+        model.addAttribute("categories",categoryDao.findAll());
 
         return "category/index";
     }

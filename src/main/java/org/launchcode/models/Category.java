@@ -1,7 +1,5 @@
 package org.launchcode.models;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,9 +28,12 @@ public class Category {
 
     public Category(String name){
         this.name = name;
-        this.cheeses =cheeses;
+//        this.cheeses =cheeses;
     }
 
+    public int getId(){
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -50,9 +51,7 @@ public class Category {
 //        this.cheeses = cheeses;
 //    }
 
-    public int getId(){
-        return id;
-    }
+
 
 //    public void setId(int id) {
 //        this.id = id;
